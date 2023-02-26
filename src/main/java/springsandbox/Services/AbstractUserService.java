@@ -1,5 +1,6 @@
 package springsandbox.Services;
 
+import springsandbox.Entity.MutableUser;
 import springsandbox.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -19,6 +20,11 @@ public abstract class AbstractUserService<U extends User> implements UserService
             users.put(user.getName(), user);
         this.users = users;
         this.repo = repo;
+    }
+
+    @Override
+    public U find(String name) {
+        return users.get(name);
     }
 
     @Override

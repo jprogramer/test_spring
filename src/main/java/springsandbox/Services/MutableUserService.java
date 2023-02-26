@@ -5,6 +5,8 @@ import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class MutableUserService extends AbstractUserService<MutableUser> {
 
@@ -26,7 +28,7 @@ public class MutableUserService extends AbstractUserService<MutableUser> {
         for (int i = 0; i < 10; i++) {
             final MutableUser oldUser = users.get(oldName);
             if (oldUser == null)
-                throw new RuntimeException("user " + oldName + " not found!");
+                throw new NoSuchElementException("user " + oldName + " not found!");
             final MutableUser newUser = new MutableUser(oldUser);
             newUser.setName(newName);
             final MutableUser userWithSameName = users.putIfAbsent(newName, newUser);

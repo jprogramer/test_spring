@@ -16,6 +16,11 @@ public class MutableUserController {
         this.userService = userService;
     }
 
+    @GetMapping("find")
+    public MutableUser find(@RequestParam String name) {
+        return userService.find(name);
+    }
+
     @GetMapping("findAll")
     public Collection<MutableUser> findAll() {
         return userService.findAll();

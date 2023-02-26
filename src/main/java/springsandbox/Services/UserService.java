@@ -1,5 +1,6 @@
 package springsandbox.Services;
 
+import springsandbox.Entity.MutableUser;
 import springsandbox.Entity.User;
 
 import java.util.Collection;
@@ -19,4 +20,6 @@ public interface UserService<U extends User> {
     U first();
 
     U last();
+
+    U find(String name);
 }
